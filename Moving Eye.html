@@ -1,0 +1,34 @@
+<html>
+    <head>
+    <link href="Main.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="box">
+            <img src="Minion.png" id="minion"/>
+            <div id="eye">.</div>
+        </div>    
+    </body>    
+    <script src="jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    
+        var object=$("#eye");
+        
+        if(object.length > 0){
+            var offset = object.offset(); 
+            
+            function move(e){
+                var center_X = (offset.left + 5) + (object.width() / 2);
+                var center_Y = (offset.top) + (object.height() / 2);
+                var mouse_X = e.pageX;
+                var mouse_Y = e.pageY;
+                
+                var radius = Math.atan2(mouse_X - center_X, mouse_Y - center_Y);
+                var degree = (radius * (180 / Math.PI) * -1);
+                
+                object.css('transform','rotate('+degree+'deg)');        
+            }
+            
+            $("#box").mousemove(move);
+        }
+    </script>
+</html>
